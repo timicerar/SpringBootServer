@@ -12,6 +12,8 @@ public class Comment {
     @Column(nullable = false)
     private String text;
     @Column(nullable = false)
+    private boolean edited;
+    @Column(nullable = false)
     private LocalDateTime timeOfPublication;
     @ManyToOne(targetEntity = Restaurant.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_id_restaurant", referencedColumnName = "idRestaurant", nullable = false)
@@ -23,8 +25,9 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String text, LocalDateTime timeOfPublication, Restaurant restaurant, User user) {
+    public Comment(String text, boolean edited, LocalDateTime timeOfPublication, Restaurant restaurant, User user) {
         this.text = text;
+        this.edited = edited;
         this.timeOfPublication = timeOfPublication;
         this.restaurant = restaurant;
         this.user = user;
@@ -44,6 +47,14 @@ public class Comment {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
     }
 
     public LocalDateTime getTimeOfPublication() {

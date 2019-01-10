@@ -1,7 +1,5 @@
 package si.feri.um.vao;
 
-import com.fasterxml.jackson.databind.deser.Deserializers;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 

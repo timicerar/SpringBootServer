@@ -1,14 +1,14 @@
 package si.feri.um.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import si.feri.um.repositories.RestaurantRepository;
 import si.feri.um.vao.Restaurant;
+import si.feri.um.vao.User;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping(path = "/restaurant")
 public class RestaurantController {
 
@@ -20,8 +20,45 @@ public class RestaurantController {
     }
 
     @GetMapping(path = "/all")
-    public @ResponseBody
-    Iterable<Restaurant> getAllRestaurants() {
-        return restaurantRepository.findAll();
+    public List<Restaurant> getAllRestaurants() {
+        return (List<Restaurant>) restaurantRepository.findAll();
+    }
+
+    @GetMapping(path = "/{idRestaurant}")
+    public Restaurant getRestaurant(@PathVariable int idRestaurant) {
+        if (restaurantRepository.existsById(idRestaurant)) {
+            //noinspection OptionalGetWithoutIsPresent
+            return restaurantRepository.findById(idRestaurant).get();
+        } else
+            return null;
+
+    }
+
+    @PostMapping(path = "/add")
+    public Restaurant addNewRestaurant(@RequestBody Restaurant restaurant) {
+        return restaurantRepository.save(restaurant);
+    }
+
+    @PutMapping(path = "update/{idRestaurant}")
+    public Restaurant updateRestaurant(@RequestBody Restaurant newRestaurantData, @PathVariable int idRestaurant) {
+        return restaurantRepository.findById(idRestaurant)
+                .map(restaurant -> {
+                    restaurant.setAddress(newRestaurantData.getAddress());
+                    restaurant.setCurrentRating(newRestaurantData.getCurrentRating());
+                    restaurant.setLatitude(newRestaurantData.getLatitude());
+                    restaurant.setLongitude(newRestaurantData.getLongitude());
+                    restaurant.setName(newRestaurantData.getName());
+                    restaurant.setType(newRestaurantData.getType());
+                    return restaurantRepository.save(restaurant);
+                })
+                .orElseGet(() -> {
+                    newRestaurantData.setIdRestaurant(idRestaurant);
+                    return restaurantRepository.save(newRestaurantData);
+                });
+    }
+
+    @DeleteMapping(path = "/delete/{idRestaurant}")
+    public void deleteRestaurant(@PathVariable int idRestaurant) {
+        restaurantRepository.deleteById(idRestaurant);
     }
 }
