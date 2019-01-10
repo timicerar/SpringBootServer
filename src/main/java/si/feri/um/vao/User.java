@@ -1,5 +1,7 @@
 package si.feri.um.vao;
 
+import com.fasterxml.jackson.databind.deser.Deserializers;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -10,7 +12,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idUser;
     @Column(nullable = false)
-    private int googleUserId;
+    private String googleUserId;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
@@ -26,7 +28,7 @@ public class User {
     public User() {
     }
 
-    public User(int googleUserId, String name, String surname, LocalDate birthday, String gender, String email, String photoUrl) {
+    public User(String googleUserId, String name, String surname, LocalDate birthday, String gender, String email, String photoUrl) {
         this.googleUserId = googleUserId;
         this.name = name;
         this.surname = surname;
@@ -44,11 +46,11 @@ public class User {
         this.idUser = idUser;
     }
 
-    public int getGoogleUserId() {
+    public String getGoogleUserId() {
         return googleUserId;
     }
 
-    public void setGoogleUserId(int googleUserId) {
+    public void setGoogleUserId(String googleUserId) {
         this.googleUserId = googleUserId;
     }
 

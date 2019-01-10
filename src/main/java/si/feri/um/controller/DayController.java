@@ -19,7 +19,7 @@ public class DayController {
         this.dayRepository = dayRepository;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path = "/all")
     public @ResponseBody
     Iterable<Day> getAllDays() {
         return dayRepository.findAll();
