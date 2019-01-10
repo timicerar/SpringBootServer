@@ -32,12 +32,12 @@ public class UserController {
             return null;
     }
 
-    @GetMapping(path = "/{email}")
+    @GetMapping(path = "/email/{email}")
     public User getUserByEmail(@PathVariable String email) {
         return userRepository.getUserByEmail(email);
     }
 
-    @GetMapping(path = "/{googleUserId}")
+    @GetMapping(path = "/googleId/{googleUserId}")
     public User getUserByGoogleUserId(@PathVariable String googleUserId) {
         return userRepository.getUserByGoogleUserId(googleUserId);
     }
