@@ -10,6 +10,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idComment;
     @Column(nullable = false)
+    @Lob
     private String text;
     @Column(nullable = false)
     private boolean edited;

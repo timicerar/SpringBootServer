@@ -11,6 +11,11 @@ public class Restaurant {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
+    @Lob
+    private String description;
+    @Column(nullable = false)
+    private String photoUrl;
+    @Column(nullable = false)
     private String address;
     @Column(nullable = false)
     private double latitude;
@@ -24,8 +29,10 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(String name, String address, double latitude, double longitude, double currentRating, String type) {
+    public Restaurant(String name, String description, String photoUrl, String address, double latitude, double longitude, double currentRating, String type) {
         this.name = name;
+        this.description = description;
+        this.photoUrl = photoUrl;
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -47,6 +54,22 @@ public class Restaurant {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     public String getAddress() {

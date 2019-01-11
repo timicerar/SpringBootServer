@@ -43,6 +43,8 @@ public class RestaurantController {
     public Restaurant updateRestaurant(@RequestBody Restaurant newRestaurantData, @PathVariable int idRestaurant) {
         return restaurantRepository.findById(idRestaurant)
                 .map(restaurant -> {
+                    restaurant.setPhotoUrl(newRestaurantData.getPhotoUrl());
+                    restaurant.setDescription(newRestaurantData.getDescription());
                     restaurant.setAddress(newRestaurantData.getAddress());
                     restaurant.setCurrentRating(newRestaurantData.getCurrentRating());
                     restaurant.setLatitude(newRestaurantData.getLatitude());
