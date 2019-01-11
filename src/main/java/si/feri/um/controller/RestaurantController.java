@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import si.feri.um.repositories.RestaurantRepository;
 import si.feri.um.vao.Restaurant;
-import si.feri.um.vao.User;
 
 import java.util.List;
 
