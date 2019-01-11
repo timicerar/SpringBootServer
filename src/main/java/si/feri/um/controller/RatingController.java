@@ -24,7 +24,7 @@ public class RatingController {
     }
 
     @GetMapping(path = "/{idRating}")
-    public Rating getRating(@PathVariable int idRating) {
+    public Rating getRatingById(@PathVariable int idRating) {
         if (ratingRepository.existsById(idRating)) {
             //noinspection OptionalGetWithoutIsPresent
             return ratingRepository.findById(idRating).get();

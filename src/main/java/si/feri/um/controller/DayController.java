@@ -24,7 +24,7 @@ public class DayController {
     }
 
     @GetMapping(path = "/{idDay}")
-    public Day getDay(@PathVariable int idDay) {
+    public Day getDayById(@PathVariable int idDay) {
         if (dayRepository.existsById(idDay)) {
             //noinspection OptionalGetWithoutIsPresent
             return dayRepository.findById(idDay).get();

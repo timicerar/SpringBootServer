@@ -25,7 +25,7 @@ public class RestaurantController {
     }
 
     @GetMapping(path = "/{idRestaurant}")
-    public Restaurant getRestaurant(@PathVariable int idRestaurant) {
+    public Restaurant getRestaurantById(@PathVariable int idRestaurant) {
         if (restaurantRepository.existsById(idRestaurant)) {
             //noinspection OptionalGetWithoutIsPresent
             return restaurantRepository.findById(idRestaurant).get();

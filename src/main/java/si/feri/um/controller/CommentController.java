@@ -24,7 +24,7 @@ public class CommentController {
     }
 
     @GetMapping(path = "/{idComment}")
-    public Comment getComment(@PathVariable int idComment) {
+    public Comment getCommentById(@PathVariable int idComment) {
         if (commentRepository.existsById(idComment)) {
             //noinspection OptionalGetWithoutIsPresent
             return commentRepository.findById(idComment).get();

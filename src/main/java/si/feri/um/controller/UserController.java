@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/{idUser}")
-    public User getUser(@PathVariable int idUser) {
+    public User getUserById(@PathVariable int idUser) {
         if (userRepository.existsById(idUser)) {
             //noinspection OptionalGetWithoutIsPresent
             return userRepository.findById(idUser).get();
