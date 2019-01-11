@@ -11,9 +11,7 @@ public class Schedule {
     private int idSchedule;
     @Column(nullable = false)
     private int orderBy;
-    @Column(nullable = false)
     private LocalTime startTime;
-    @Column(nullable = false)
     private LocalTime endTime;
     @ManyToOne(targetEntity = Day.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_id_day", referencedColumnName = "idDay", nullable = false)
