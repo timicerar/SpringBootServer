@@ -14,6 +14,7 @@ public class Restaurant {
     @Lob
     private String description;
     @Column(nullable = false)
+    @Lob
     private String photoUrl;
     @Column(nullable = false)
     private String address;
