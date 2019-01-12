@@ -15,7 +15,6 @@ public class User {
     private String name;
     @Column(nullable = false)
     private String surname;
-    @Column(nullable = false)
     private LocalDate birthday;
     private String gender;
     @Column(nullable = false)
