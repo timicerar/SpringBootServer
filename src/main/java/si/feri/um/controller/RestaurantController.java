@@ -59,8 +59,11 @@ public class RestaurantController {
     }
 
     @DeleteMapping(path = "/delete/{idRestaurant}")
-    public void deleteRestaurant(@PathVariable int idRestaurant) {
-        if (restaurantRepository.existsById(idRestaurant))
+    public boolean deleteRestaurant(@PathVariable int idRestaurant) {
+        if (restaurantRepository.existsById(idRestaurant)) {
             restaurantRepository.deleteById(idRestaurant);
+            return true;
+        } else
+            return false;
     }
 }

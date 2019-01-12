@@ -51,8 +51,11 @@ public class ScheduleController {
     }
 
     @DeleteMapping(path = "/delete/{idSchedule}")
-    public void deleteSchedule(@PathVariable int idSchedule) {
-        if (scheduleRepository.existsById(idSchedule))
+    public boolean deleteSchedule(@PathVariable int idSchedule) {
+        if (scheduleRepository.existsById(idSchedule)){
             scheduleRepository.deleteById(idSchedule);
+            return true;
+        } else
+            return false;
     }
 }

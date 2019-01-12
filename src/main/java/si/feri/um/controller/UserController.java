@@ -72,8 +72,11 @@ public class UserController {
     }
 
     @DeleteMapping(path = "/delete/{idUser}")
-    public void deleteUser(@PathVariable int idUser) {
-        if (userRepository.existsById(idUser))
+    public boolean deleteUser(@PathVariable int idUser) {
+        if (userRepository.existsById(idUser)){
             userRepository.deleteById(idUser);
+            return true;
+        } else
+            return false;
     }
 }
