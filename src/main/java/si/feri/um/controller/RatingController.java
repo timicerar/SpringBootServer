@@ -65,6 +65,7 @@ public class RatingController {
 
     @DeleteMapping(path = "/delete/{idRating}")
     public void deleteRating(@PathVariable int idRating) {
-        ratingRepository.deleteById(idRating);
+        if (ratingRepository.existsById(idRating))
+            ratingRepository.deleteById(idRating);
     }
 }

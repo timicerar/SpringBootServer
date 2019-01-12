@@ -66,6 +66,7 @@ public class CommentController {
 
     @DeleteMapping(path = "/delete/{idComment}")
     public void deleteComment(@PathVariable int idComment) {
-        commentRepository.deleteById(idComment);
+        if (commentRepository.existsById(idComment))
+            commentRepository.deleteById(idComment);
     }
 }

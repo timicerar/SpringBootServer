@@ -53,6 +53,7 @@ public class DayController {
 
     @DeleteMapping(path = "/delete/{idDay}")
     public void deleteDay(@PathVariable int idDay) {
-        dayRepository.deleteById(idDay);
+        if (dayRepository.existsById(idDay))
+            dayRepository.deleteById(idDay);
     }
 }

@@ -52,7 +52,7 @@ public class UserController {
         return userRepository.save(user);
     }
 
-    @PutMapping(path = "update/{idUser}")
+    @PutMapping(path = "/update/{idUser}")
     public User updateUser(@RequestBody User newUserData, @PathVariable int idUser) {
         return userRepository.findById(idUser)
                 .map(user -> {
@@ -73,6 +73,7 @@ public class UserController {
 
     @DeleteMapping(path = "/delete/{idUser}")
     public void deleteUser(@PathVariable int idUser) {
-        userRepository.deleteById(idUser);
+        if (userRepository.existsById(idUser))
+            userRepository.deleteById(idUser);
     }
 }

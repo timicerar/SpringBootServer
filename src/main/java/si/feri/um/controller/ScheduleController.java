@@ -52,6 +52,7 @@ public class ScheduleController {
 
     @DeleteMapping(path = "/delete/{idSchedule}")
     public void deleteSchedule(@PathVariable int idSchedule) {
-        scheduleRepository.deleteById(idSchedule);
+        if (scheduleRepository.existsById(idSchedule))
+            scheduleRepository.deleteById(idSchedule);
     }
 }
