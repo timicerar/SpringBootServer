@@ -8,9 +8,9 @@ public class Schedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idSchedule;
+    private Long idSchedule;
     @Column(nullable = false)
-    private int orderBy;
+    private Long orderBy;
     private LocalTime startTime;
     private LocalTime endTime;
     @ManyToOne(targetEntity = Day.class, fetch = FetchType.EAGER)
@@ -23,7 +23,7 @@ public class Schedule {
     public Schedule() {
     }
 
-    public Schedule(int orderBy, LocalTime startTime, LocalTime endTime, Day day, Restaurant restaurant) {
+    public Schedule(Long orderBy, LocalTime startTime, LocalTime endTime, Day day, Restaurant restaurant) {
         this.orderBy = orderBy;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -31,19 +31,19 @@ public class Schedule {
         this.restaurant = restaurant;
     }
 
-    public int getIdSchedule() {
+    public Long getIdSchedule() {
         return idSchedule;
     }
 
-    public void setIdSchedule(int idSchedule) {
+    public void setIdSchedule(Long idSchedule) {
         this.idSchedule = idSchedule;
     }
 
-    public int getOrderBy() {
+    public Long getOrderBy() {
         return orderBy;
     }
 
-    public void setOrderBy(int orderBy) {
+    public void setOrderBy(Long orderBy) {
         this.orderBy = orderBy;
     }
 

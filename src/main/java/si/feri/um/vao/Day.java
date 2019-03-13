@@ -7,7 +7,7 @@ public class Day {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idDay;
+    private Long idDay;
     @Column(nullable = false)
     private String name;
 
@@ -18,11 +18,11 @@ public class Day {
         this.name = name;
     }
 
-    public int getIdDay() {
+    public Long getIdDay() {
         return idDay;
     }
 
-    public void setIdDay(int idDay) {
+    public void setIdDay(Long idDay) {
         this.idDay = idDay;
     }
 

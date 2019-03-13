@@ -6,6 +6,7 @@ import si.feri.um.vao.Comment;
 import java.util.List;
 
 public interface CommentRepository extends CrudRepository<Comment, Integer> {
-    List<Comment> getCommentsByRestaurantIdRestaurant(int idRestaurant);
-    List<Comment> getCommentsByUserIdUser(int idUser);
+    List<Comment> getCommentsByRestaurantIdRestaurant(Long idRestaurant);
+    List<Comment> getCommentsByUserIdUser(Long idUser);
+    List<Comment> getCommentsByUser_GoogleUserId(String googleUserId);
 }

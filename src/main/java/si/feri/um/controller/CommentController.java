@@ -24,22 +24,27 @@ public class CommentController {
     }
 
     @GetMapping(path = "/{idComment}")
-    public Comment getCommentById(@PathVariable int idComment) {
-        if (commentRepository.existsById(idComment)) {
+    public Comment getCommentById(@PathVariable Long idComment) {
+        if (commentRepository.existsById(idComment.intValue())) {
             //noinspection OptionalGetWithoutIsPresent
-            return commentRepository.findById(idComment).get();
+            return commentRepository.findById(idComment.intValue()).get();
         } else
             return null;
     }
 
     @GetMapping(path = "/restaurant/{idRestaurant}")
-    public List<Comment> getCommentsByRestaurantId(@PathVariable int idRestaurant) {
+    public List<Comment> getCommentsByRestaurantId(@PathVariable Long idRestaurant) {
         return commentRepository.getCommentsByRestaurantIdRestaurant(idRestaurant);
     }
 
     @GetMapping(path = "/user/{idUser}")
-    public List<Comment> getCommentsByUserId(@PathVariable int idUser) {
+    public List<Comment> getCommentsByUserId(@PathVariable Long idUser) {
         return commentRepository.getCommentsByUserIdUser(idUser);
+    }
+
+    @GetMapping(path = "/user/googleId/{googleUserId}")
+    public List<Comment> getCommentsByUserGoogleId(@PathVariable String googleUserId) {
+        return commentRepository.getCommentsByUser_GoogleUserId(googleUserId);
     }
 
     @PostMapping(path = "/add")
@@ -48,8 +53,8 @@ public class CommentController {
     }
 
     @PutMapping(path = "update/{idComment}")
-    public Comment updateComment(@RequestBody Comment newCommentData, @PathVariable int idComment) {
-        return commentRepository.findById(idComment)
+    public Comment updateComment(@RequestBody Comment newCommentData, @PathVariable Long idComment) {
+        return commentRepository.findById(idComment.intValue())
                 .map(comment -> {
                     comment.setEdited(newCommentData.isEdited());
                     comment.setRestaurant(newCommentData.getRestaurant());
@@ -65,9 +70,9 @@ public class CommentController {
     }
 
     @DeleteMapping(path = "/delete/{idComment}")
-    public boolean deleteComment(@PathVariable int idComment) {
-        if (commentRepository.existsById(idComment)){
-            commentRepository.deleteById(idComment);
+    public boolean deleteComment(@PathVariable Long idComment) {
+        if (commentRepository.existsById(idComment.intValue())){
+            commentRepository.deleteById(idComment.intValue());
             return true;
         } else
             return false;

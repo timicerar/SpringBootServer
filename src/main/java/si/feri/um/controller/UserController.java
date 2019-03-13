@@ -24,10 +24,10 @@ public class UserController {
     }
 
     @GetMapping(path = "/{idUser}")
-    public User getUserById(@PathVariable int idUser) {
-        if (userRepository.existsById(idUser)) {
+    public User getUserById(@PathVariable Long idUser) {
+        if (userRepository.existsById(idUser.intValue())) {
             //noinspection OptionalGetWithoutIsPresent
-            return userRepository.findById(idUser).get();
+            return userRepository.findById(idUser.intValue()).get();
         } else
             return null;
     }
@@ -53,8 +53,8 @@ public class UserController {
     }
 
     @PutMapping(path = "/update/{idUser}")
-    public User updateUser(@RequestBody User newUserData, @PathVariable int idUser) {
-        return userRepository.findById(idUser)
+    public User updateUser(@RequestBody User newUserData, @PathVariable Long idUser) {
+        return userRepository.findById(idUser.intValue())
                 .map(user -> {
                     user.setGoogleUserId(newUserData.getGoogleUserId());
                     user.setName(newUserData.getName());
@@ -72,9 +72,9 @@ public class UserController {
     }
 
     @DeleteMapping(path = "/delete/{idUser}")
-    public boolean deleteUser(@PathVariable int idUser) {
-        if (userRepository.existsById(idUser)){
-            userRepository.deleteById(idUser);
+    public boolean deleteUser(@PathVariable Long idUser) {
+        if (userRepository.existsById(idUser.intValue())){
+            userRepository.deleteById(idUser.intValue());
             return true;
         } else
             return false;

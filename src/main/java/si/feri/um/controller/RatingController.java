@@ -24,22 +24,27 @@ public class RatingController {
     }
 
     @GetMapping(path = "/{idRating}")
-    public Rating getRatingById(@PathVariable int idRating) {
-        if (ratingRepository.existsById(idRating)) {
+    public Rating getRatingById(@PathVariable Long idRating) {
+        if (ratingRepository.existsById(idRating.intValue())) {
             //noinspection OptionalGetWithoutIsPresent
-            return ratingRepository.findById(idRating).get();
+            return ratingRepository.findById(idRating.intValue()).get();
         } else
             return null;
     }
 
     @GetMapping(path = "/restaurant/{idRestaurant}")
-    public List<Rating> getRatingsByRestaurantId(@PathVariable int idRestaurant) {
+    public List<Rating> getRatingsByRestaurantId(@PathVariable Long idRestaurant) {
         return ratingRepository.getRatingsByRestaurantIdRestaurant(idRestaurant);
     }
 
     @GetMapping(path = "/user/{idUser}")
-    public List<Rating> getRatingsByUserId(@PathVariable int idUser) {
+    public List<Rating> getRatingsByUserId(@PathVariable Long idUser) {
         return ratingRepository.getRatingsByUserIdUser(idUser);
+    }
+
+    @GetMapping(path = "/user/googleId/{googleUserId}")
+    public List<Rating> getRatingsByUserGoogleId(@PathVariable String googleUserId) {
+        return ratingRepository.getRatingsByUser_GoogleUserId(googleUserId);
     }
 
     @PostMapping(path = "/add")
@@ -48,8 +53,8 @@ public class RatingController {
     }
 
     @PutMapping(path = "update/{idRating}")
-    public Rating updateRating(@RequestBody Rating newRatingData, @PathVariable int idRating) {
-        return ratingRepository.findById(idRating)
+    public Rating updateRating(@RequestBody Rating newRatingData, @PathVariable Long idRating) {
+        return ratingRepository.findById(idRating.intValue())
                 .map(rating -> {
                     rating.setRestaurant(newRatingData.getRestaurant());
                     rating.setUser(newRatingData.getUser());
@@ -64,9 +69,9 @@ public class RatingController {
     }
 
     @DeleteMapping(path = "/delete/{idRating}")
-    public boolean deleteRating(@PathVariable int idRating) {
-        if (ratingRepository.existsById(idRating)) {
-            ratingRepository.deleteById(idRating);
+    public boolean deleteRating(@PathVariable Long idRating) {
+        if (ratingRepository.existsById(idRating.intValue())) {
+            ratingRepository.deleteById(idRating.intValue());
             return true;
         } else
             return false;

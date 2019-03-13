@@ -8,7 +8,7 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idComment;
+    private Long idComment;
     @Column(nullable = false)
     @Lob
     private String text;
@@ -34,11 +34,11 @@ public class Comment {
         this.user = user;
     }
 
-    public int getIdComment() {
+    public Long getIdComment() {
         return idComment;
     }
 
-    public void setIdComment(int idComment) {
+    public void setIdComment(Long idComment) {
         this.idComment = idComment;
     }
 
