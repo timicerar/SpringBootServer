@@ -32,6 +32,11 @@ public class RatingController {
             return null;
     }
 
+    @GetMapping(path = "/restaurant/{idRestaurant}/user/googleId/{userGoogleId}")
+    public Rating getRatingByRestaurantIdRestaurantAndUserGoogleUserId(@PathVariable Long idRestaurant, @PathVariable String userGoogleId) {
+        return ratingRepository.getRatingByRestaurant_IdRestaurantAndUser_GoogleUserId(idRestaurant, userGoogleId);
+    }
+
     @GetMapping(path = "/restaurant/{idRestaurant}")
     public List<Rating> getRatingsByRestaurantId(@PathVariable Long idRestaurant) {
         return ratingRepository.getRatingsByRestaurantIdRestaurant(idRestaurant);
