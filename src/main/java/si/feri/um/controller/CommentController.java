@@ -24,21 +24,21 @@ public class CommentController {
     }
 
     @GetMapping(path = "/{idComment}")
-    public Comment getCommentById(@PathVariable Long idComment) {
-        if (commentRepository.existsById(idComment.intValue())) {
+    public Comment getCommentById(@PathVariable int idComment) {
+        if (commentRepository.existsById(idComment)) {
             //noinspection OptionalGetWithoutIsPresent
-            return commentRepository.findById(idComment.intValue()).get();
+            return commentRepository.findById(idComment).get();
         } else
             return null;
     }
 
     @GetMapping(path = "/restaurant/{idRestaurant}")
-    public List<Comment> getCommentsByRestaurantId(@PathVariable Long idRestaurant) {
+    public List<Comment> getCommentsByRestaurantId(@PathVariable int idRestaurant) {
         return commentRepository.getCommentsByRestaurantIdRestaurant(idRestaurant);
     }
 
     @GetMapping(path = "/user/{idUser}")
-    public List<Comment> getCommentsByUserId(@PathVariable Long idUser) {
+    public List<Comment> getCommentsByUserId(@PathVariable int idUser) {
         return commentRepository.getCommentsByUserIdUser(idUser);
     }
 
@@ -53,8 +53,8 @@ public class CommentController {
     }
 
     @PutMapping(path = "update/{idComment}")
-    public Comment updateComment(@RequestBody Comment newCommentData, @PathVariable Long idComment) {
-        return commentRepository.findById(idComment.intValue())
+    public Comment updateComment(@RequestBody Comment newCommentData, @PathVariable int idComment) {
+        return commentRepository.findById(idComment)
                 .map(comment -> {
                     comment.setEdited(newCommentData.isEdited());
                     comment.setRestaurant(newCommentData.getRestaurant());
@@ -70,9 +70,9 @@ public class CommentController {
     }
 
     @DeleteMapping(path = "/delete/{idComment}")
-    public boolean deleteComment(@PathVariable Long idComment) {
-        if (commentRepository.existsById(idComment.intValue())){
-            commentRepository.deleteById(idComment.intValue());
+    public boolean deleteComment(@PathVariable int idComment) {
+        if (commentRepository.existsById(idComment)){
+            commentRepository.deleteById(idComment);
             return true;
         } else
             return false;

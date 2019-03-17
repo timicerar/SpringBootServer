@@ -24,10 +24,10 @@ public class DayController {
     }
 
     @GetMapping(path = "/{idDay}")
-    public Day getDayById(@PathVariable Long idDay) {
-        if (dayRepository.existsById(idDay.intValue())) {
+    public Day getDayById(@PathVariable int idDay) {
+        if (dayRepository.existsById(idDay)) {
             //noinspection OptionalGetWithoutIsPresent
-            return dayRepository.findById(idDay.intValue()).get();
+            return dayRepository.findById(idDay).get();
         } else
             return null;
 
@@ -39,8 +39,8 @@ public class DayController {
     }
 
     @PutMapping(path = "update/{idDay}")
-    public Day updateDay(@RequestBody Day newDayData, @PathVariable Long idDay) {
-        return dayRepository.findById(idDay.intValue())
+    public Day updateDay(@RequestBody Day newDayData, @PathVariable int idDay) {
+        return dayRepository.findById(idDay)
                 .map(day -> {
                     day.setName(newDayData.getName());
                     return dayRepository.save(day);
@@ -52,9 +52,9 @@ public class DayController {
     }
 
     @DeleteMapping(path = "/delete/{idDay}")
-    public boolean deleteDay(@PathVariable Long idDay) {
-        if (dayRepository.existsById(idDay.intValue())){
-            dayRepository.deleteById(idDay.intValue());
+    public boolean deleteDay(@PathVariable int idDay) {
+        if (dayRepository.existsById(idDay)){
+            dayRepository.deleteById(idDay);
             return true;
         } else
             return false;

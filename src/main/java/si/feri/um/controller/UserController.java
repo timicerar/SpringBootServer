@@ -24,10 +24,10 @@ public class UserController {
     }
 
     @GetMapping(path = "/{idUser}")
-    public User getUserById(@PathVariable Long idUser) {
-        if (userRepository.existsById(idUser.intValue())) {
+    public User getUserById(@PathVariable int idUser) {
+        if (userRepository.existsById(idUser)) {
             //noinspection OptionalGetWithoutIsPresent
-            return userRepository.findById(idUser.intValue()).get();
+            return userRepository.findById(idUser).get();
         } else
             return null;
     }
@@ -43,8 +43,8 @@ public class UserController {
     }
 
     @GetMapping(path = "/email/{email}/googleId/{googleUserId}")
-    public User getUserByEmailOrGoogleUserId(@PathVariable String email, @PathVariable String googleUserId) {
-        return userRepository.getUserByEmailOrGoogleUserId(email, googleUserId);
+    public Boolean getUserByEmailOrGoogleUserId(@PathVariable String email, @PathVariable String googleUserId) {
+        return userRepository.getUserByEmailOrGoogleUserId(email, googleUserId) != null;
     }
 
     @PostMapping(path = "/add")
@@ -53,8 +53,8 @@ public class UserController {
     }
 
     @PutMapping(path = "/update/{idUser}")
-    public User updateUser(@RequestBody User newUserData, @PathVariable Long idUser) {
-        return userRepository.findById(idUser.intValue())
+    public User updateUser(@RequestBody User newUserData, @PathVariable int idUser) {
+        return userRepository.findById(idUser)
                 .map(user -> {
                     user.setGoogleUserId(newUserData.getGoogleUserId());
                     user.setNameSurname(newUserData.getNameSurname());
@@ -71,9 +71,9 @@ public class UserController {
     }
 
     @DeleteMapping(path = "/delete/{idUser}")
-    public boolean deleteUser(@PathVariable Long idUser) {
-        if (userRepository.existsById(idUser.intValue())){
-            userRepository.deleteById(idUser.intValue());
+    public boolean deleteUser(@PathVariable int idUser) {
+        if (userRepository.existsById(idUser)){
+            userRepository.deleteById(idUser);
             return true;
         } else
             return false;

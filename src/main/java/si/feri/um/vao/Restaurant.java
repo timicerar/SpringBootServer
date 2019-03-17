@@ -7,7 +7,7 @@ public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idRestaurant;
+    private int idRestaurant;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
@@ -41,11 +41,11 @@ public class Restaurant {
         this.type = type;
     }
 
-    public Long getIdRestaurant() {
+    public int getIdRestaurant() {
         return idRestaurant;
     }
 
-    public void setIdRestaurant(Long idRestaurant) {
+    public void setIdRestaurant(int idRestaurant) {
         this.idRestaurant = idRestaurant;
     }
 

@@ -8,7 +8,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idUser;
+    private int idUser;
     @Column(nullable = false)
     private String googleUserId;
     @Column(nullable = false)
@@ -32,11 +32,11 @@ public class User {
         this.photoUrl = photoUrl;
     }
 
-    public Long getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Long idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 

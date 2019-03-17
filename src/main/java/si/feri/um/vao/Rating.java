@@ -8,7 +8,7 @@ public class Rating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idRating;
+    private int idRating;
     @Column(nullable = false)
     private double value;
     @Column(nullable = false)
@@ -30,11 +30,11 @@ public class Rating {
         this.user = user;
     }
 
-    public Long getIdRating() {
+    public int getIdRating() {
         return idRating;
     }
 
-    public void setIdRating(Long idRating) {
+    public void setIdRating(int idRating) {
         this.idRating = idRating;
     }
 

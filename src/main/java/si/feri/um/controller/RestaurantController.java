@@ -24,10 +24,10 @@ public class RestaurantController {
     }
 
     @GetMapping(path = "/{idRestaurant}")
-    public Restaurant getRestaurantById(@PathVariable Long idRestaurant) {
-        if (restaurantRepository.existsById(idRestaurant.intValue())) {
+    public Restaurant getRestaurantById(@PathVariable int idRestaurant) {
+        if (restaurantRepository.existsById(idRestaurant)) {
             //noinspection OptionalGetWithoutIsPresent
-            return restaurantRepository.findById(idRestaurant.intValue()).get();
+            return restaurantRepository.findById(idRestaurant).get();
         } else
             return null;
 
@@ -39,8 +39,8 @@ public class RestaurantController {
     }
 
     @PutMapping(path = "update/{idRestaurant}")
-    public Restaurant updateRestaurant(@RequestBody Restaurant newRestaurantData, @PathVariable Long idRestaurant) {
-        return restaurantRepository.findById(idRestaurant.intValue())
+    public Restaurant updateRestaurant(@RequestBody Restaurant newRestaurantData, @PathVariable int idRestaurant) {
+        return restaurantRepository.findById(idRestaurant)
                 .map(restaurant -> {
                     restaurant.setPhotoUrl(newRestaurantData.getPhotoUrl());
                     restaurant.setDescription(newRestaurantData.getDescription());
@@ -59,9 +59,9 @@ public class RestaurantController {
     }
 
     @DeleteMapping(path = "/delete/{idRestaurant}")
-    public boolean deleteRestaurant(@PathVariable Long idRestaurant) {
-        if (restaurantRepository.existsById(idRestaurant.intValue())) {
-            restaurantRepository.deleteById(idRestaurant.intValue());
+    public boolean deleteRestaurant(@PathVariable int idRestaurant) {
+        if (restaurantRepository.existsById(idRestaurant)) {
+            restaurantRepository.deleteById(idRestaurant);
             return true;
         } else
             return false;

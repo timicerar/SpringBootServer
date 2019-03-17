@@ -24,7 +24,7 @@ public class ScheduleController {
     }
 
     @GetMapping(path = "/restaurant/{idRestaurant}")
-    public List<Schedule> getSchedulesByRestaurantId(@PathVariable Long idRestaurant) {
+    public List<Schedule> getSchedulesByRestaurantId(@PathVariable int idRestaurant) {
         return scheduleRepository.getSchedulesByRestaurantIdRestaurant(idRestaurant);
     }
 
@@ -34,8 +34,8 @@ public class ScheduleController {
     }
 
     @PutMapping(path = "update/{idSchedule}")
-    public Schedule updateSchedule(@RequestBody Schedule newScheduleData, @PathVariable Long idSchedule) {
-        return scheduleRepository.findById(idSchedule.intValue())
+    public Schedule updateSchedule(@RequestBody Schedule newScheduleData, @PathVariable int idSchedule) {
+        return scheduleRepository.findById(idSchedule)
                 .map(schedule -> {
                     schedule.setOrderBy(newScheduleData.getOrderBy());
                     schedule.setStartTime(newScheduleData.getStartTime());
@@ -51,9 +51,9 @@ public class ScheduleController {
     }
 
     @DeleteMapping(path = "/delete/{idSchedule}")
-    public boolean deleteSchedule(@PathVariable Long idSchedule) {
-        if (scheduleRepository.existsById(idSchedule.intValue())){
-            scheduleRepository.deleteById(idSchedule.intValue());
+    public boolean deleteSchedule(@PathVariable int idSchedule) {
+        if (scheduleRepository.existsById(idSchedule)){
+            scheduleRepository.deleteById(idSchedule);
             return true;
         } else
             return false;
