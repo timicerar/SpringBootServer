@@ -57,8 +57,7 @@ public class UserController {
         return userRepository.findById(idUser.intValue())
                 .map(user -> {
                     user.setGoogleUserId(newUserData.getGoogleUserId());
-                    user.setName(newUserData.getName());
-                    user.setSurname(newUserData.getSurname());
+                    user.setNameSurname(newUserData.getNameSurname());
                     user.setBirthday(newUserData.getBirthday());
                     user.setGender(newUserData.getGender());
                     user.setEmail(newUserData.getEmail());

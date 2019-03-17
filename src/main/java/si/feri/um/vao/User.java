@@ -12,9 +12,7 @@ public class User {
     @Column(nullable = false)
     private String googleUserId;
     @Column(nullable = false)
-    private String name;
-    @Column(nullable = false)
-    private String surname;
+    private String nameSurname;
     private LocalDate birthday;
     private String gender;
     @Column(nullable = false)
@@ -25,10 +23,9 @@ public class User {
     public User() {
     }
 
-    public User(String googleUserId, String name, String surname, LocalDate birthday, String gender, String email, String photoUrl) {
+    public User(String googleUserId, String nameSurname, LocalDate birthday, String gender, String email, String photoUrl) {
         this.googleUserId = googleUserId;
-        this.name = name;
-        this.surname = surname;
+        this.nameSurname = nameSurname;
         this.birthday = birthday;
         this.gender = gender;
         this.email = email;
@@ -51,20 +48,12 @@ public class User {
         this.googleUserId = googleUserId;
     }
 
-    public String getName() {
-        return name;
+    public String getNameSurname() {
+        return nameSurname;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setNameSurname(String name) {
+        this.nameSurname = name;
     }
 
     public LocalDate getBirthday() {
