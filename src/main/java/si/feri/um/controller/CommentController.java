@@ -52,7 +52,7 @@ public class CommentController {
         return commentRepository.save(comment);
     }
 
-    @PutMapping(path = "update/{idComment}")
+    @PutMapping(path = "/update/{idComment}")
     public Comment updateComment(@RequestBody Comment newCommentData, @PathVariable int idComment) {
         return commentRepository.findById(idComment)
                 .map(comment -> {
