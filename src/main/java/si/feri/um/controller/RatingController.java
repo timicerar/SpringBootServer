@@ -3,7 +3,9 @@ package si.feri.um.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import si.feri.um.repositories.RatingRepository;
+import si.feri.um.repositories.RestaurantRepository;
 import si.feri.um.vao.Rating;
+import si.feri.um.vao.Restaurant;
 
 import java.util.List;
 
@@ -12,9 +14,11 @@ import java.util.List;
 public class RatingController {
 
     private RatingRepository ratingRepository;
+    private RestaurantRepository restaurantRepository;
 
     @Autowired
-    public RatingController(RatingRepository ratingRepository) {
+    public RatingController(RatingRepository ratingRepository, RestaurantRepository restaurantRepository) {
+        this.restaurantRepository = restaurantRepository;
         this.ratingRepository = ratingRepository;
     }
 
@@ -52,9 +56,36 @@ public class RatingController {
         return ratingRepository.getRatingsByUser_GoogleUserId(googleUserId);
     }
 
+    @GetMapping(path = "/user/googleId/{googleUserId}/restaurant/{restaurantId}")
+    public List<Rating> getRatingsByUserGoogleIdAndGoogleId(@PathVariable String googleUserId, @PathVariable int restaurantId) {
+        return ratingRepository.getRatingsByUser_GoogleUserIdAndRestaurantIdRestaurant(googleUserId, restaurantId);
+    }
+
     @PostMapping(path = "/add")
     public Rating addNewRating(@RequestBody Rating rating) {
-        return ratingRepository.save(rating);
+        List<Rating> usersRatings =
+                ratingRepository.getRatingsByUserIdUserAndRestaurantIdRestaurant(
+                        rating.getUser().getIdUser(),
+                        rating.getRestaurant().getIdRestaurant()
+                );
+
+        Rating createdRating = ratingRepository.save(rating);
+
+        if (usersRatings != null) {
+            if (usersRatings.size() == 0) {
+                Restaurant restaurant = restaurantRepository.getRestaurantByIdRestaurant(rating.getRestaurant().getIdRestaurant());
+                double newRatingValue = (restaurant.getCurrentRating() + rating.getValue()) / 2;
+
+                if (newRatingValue > 5)
+                    restaurant.setCurrentRating(5);
+                else
+                    restaurant.setCurrentRating(newRatingValue);
+
+                restaurantRepository.save(restaurant);
+            }
+        }
+
+        return createdRating;
     }
 
     @PutMapping(path = "update/{idRating}")
