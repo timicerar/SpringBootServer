@@ -3,7 +3,7 @@ package si.feri.um.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import si.feri.um.repositories.UserRepository;
-import si.feri.um.vao.User;
+import si.feri.um.models.User;
 
 import java.util.List;
 

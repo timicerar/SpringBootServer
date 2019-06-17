@@ -1,4 +1,4 @@
-package si.feri.um.vao;
+package si.feri.um.models;
 
 import javax.persistence.*;
 import java.time.LocalTime;

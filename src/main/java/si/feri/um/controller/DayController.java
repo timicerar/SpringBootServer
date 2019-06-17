@@ -3,7 +3,7 @@ package si.feri.um.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import si.feri.um.repositories.DayRepository;
-import si.feri.um.vao.Day;
+import si.feri.um.models.Day;
 
 import java.util.List;
 

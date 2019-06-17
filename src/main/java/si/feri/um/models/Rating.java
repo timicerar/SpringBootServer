@@ -1,19 +1,16 @@
-package si.feri.um.vao;
+package si.feri.um.models;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Comment {
+public class Rating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idComment;
+    private int idRating;
     @Column(nullable = false)
-    @Lob
-    private String text;
-    @Column(nullable = false)
-    private boolean edited;
+    private double value;
     @Column(nullable = false)
     private LocalDateTime timeOfPublication;
     @ManyToOne(targetEntity = Restaurant.class, fetch = FetchType.EAGER)
@@ -23,39 +20,30 @@ public class Comment {
     @JoinColumn(name = "fk_id_user", referencedColumnName = "idUser", nullable = false)
     private User user;
 
-    public Comment() {
+    public Rating() {
     }
 
-    public Comment(String text, boolean edited, LocalDateTime timeOfPublication, Restaurant restaurant, User user) {
-        this.text = text;
-        this.edited = edited;
+    public Rating(double value, LocalDateTime timeOfPublication, Restaurant restaurant, User user) {
+        this.value = value;
         this.timeOfPublication = timeOfPublication;
         this.restaurant = restaurant;
         this.user = user;
     }
 
-    public int getIdComment() {
-        return idComment;
+    public int getIdRating() {
+        return idRating;
     }
 
-    public void setIdComment(int idComment) {
-        this.idComment = idComment;
+    public void setIdRating(int idRating) {
+        this.idRating = idRating;
     }
 
-    public String getText() {
-        return text;
+    public double getValue() {
+        return value;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public boolean isEdited() {
-        return edited;
-    }
-
-    public void setEdited(boolean edited) {
-        this.edited = edited;
+    public void setValue(double value) {
+        this.value = value;
     }
 
     public LocalDateTime getTimeOfPublication() {

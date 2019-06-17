@@ -3,7 +3,7 @@ package si.feri.um.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import si.feri.um.repositories.RestaurantRepository;
-import si.feri.um.vao.Restaurant;
+import si.feri.um.models.Restaurant;
 
 import java.util.List;
 

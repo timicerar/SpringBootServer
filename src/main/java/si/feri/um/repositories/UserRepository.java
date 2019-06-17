@@ -1,7 +1,7 @@
 package si.feri.um.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import si.feri.um.vao.User;
+import si.feri.um.models.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
     User getUserByGoogleUserId(String googleUserId);
